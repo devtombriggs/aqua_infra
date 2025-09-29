@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: aqua-fe-deployment
+    labels:
+        app: aqua-fe
+        type: front-end
+spec:
+  template:
+    metadata:
+      name: myapp-pod
+      labels:
+          app: aqua-fe
+          type: front-end
+    spec:
+      containers:
+        - name: aqua-frontend
+          image: aqua-ui
+          imagePullPolicy: Never
+  replicas: 3
+  selector:
+      matchLabels:
+        type: front-end
