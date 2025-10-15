@@ -1,0 +1,8 @@
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: high-priority
+value: 1000000
+description: "priority class for mission critical pods"
+globalDefault: true
+preemptionPolicy: never # won't kill the existing pods

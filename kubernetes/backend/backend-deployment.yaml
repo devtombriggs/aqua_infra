@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aqua-backend
+  labels:
+    app: aqua-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: aqua-backend
+  template:
+    metadata:
+      labels:
+        app: aqua-backend
+    spec:
+      containers:
+      - image: aqua-backend
+        name: aqua-backend
+        imagePullPolicy: Never
+        env:
+          - name: SPRING_DATASOURCE_URL
+            value: jdbc:postgresql://51.91.165.34:5432/aquamon

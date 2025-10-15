@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: tank-senor
+  name: tank-senor
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tank-senor
+  template:
+    metadata:
+      labels:
+        app: tank-senor
+    spec:
+      containers:
+      - image: tank-sensor
+        name: tank-sensor
+        imagePullPolicy: Never
