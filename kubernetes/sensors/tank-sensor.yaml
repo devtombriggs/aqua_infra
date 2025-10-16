@@ -15,6 +15,9 @@ spec:
         app: tank-senor
     spec:
       containers:
-      - image: tank-sensor
+      - image: sensor
         name: tank-sensor
         imagePullPolicy: Never
+        env:
+          - name: API_URL
+            value: http://192.168.49.2:30009/api/ingest
