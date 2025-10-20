@@ -1,0 +1,23 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: tank-cron
+spec:
+  schedule: "* * * * *"                 
+  concurrencyPolicy: Forbid             
+  successfulJobsHistoryLimit: 2
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      backoffLimit: 2                   
+      ttlSecondsAfterFinished: 600      
+      template:
+        spec:
+          restartPolicy: Never
+          containers:
+            - name: tank-sensor
+              image: tank-sensor:latest
+              imagePullPolicy: Never
+              env:
+                - name: API_URL
+                  value: "http://backend-service.default.svc.cluster.local:8080/api/ingest"

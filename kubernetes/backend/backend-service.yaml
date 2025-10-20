@@ -10,7 +10,6 @@ spec:
     port: 8080
     protocol: TCP
     targetPort: 8080
-    nodePort: 30009
   selector:
     app: aqua-backend
-  type: NodePort
+  type: ClusterIP
